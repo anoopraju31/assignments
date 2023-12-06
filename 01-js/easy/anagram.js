@@ -5,7 +5,29 @@
 */
 
 function isAnagram(str1, str2) {
+	if (str1.length !== str2.length) return false
 
+	let s1 = str1.toLowerCase()
+	let s2 = str2.toLowerCase()
+
+	let map1 = {}
+
+	for (let i of s1) {
+		if (map1.hasOwnProperty(i)) map1[i] += 1
+		else map1[i] = 1
+	}
+
+	let map2 = {}
+	for (let i of s2) {
+		if (map2.hasOwnProperty(i)) map2[i] += 1
+		else map2[i] = 1
+	}
+
+	for (let k of Object.keys(map1)) {
+		if (map1[k] !== map2[k]) return false
+	}
+
+	return true
 }
 
-module.exports = isAnagram;
+module.exports = isAnagram
