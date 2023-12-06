@@ -6,7 +6,21 @@
 */
 
 function calculateTotalSpentByCategory(transactions) {
-  return [];
+	let dic = {}
+
+	for (let obj of transactions) {
+		if (dic.hasOwnProperty(obj.category)) {
+			dic[obj.category] += obj.price
+		} else {
+			dic[obj.category] = obj.price
+		}
+	}
+
+	let res = Object.keys(dic).map((category) => ({
+		category,
+		totalSpent: dic[category],
+	}))
+	return res
 }
 
-module.exports = calculateTotalSpentByCategory;
+module.exports = calculateTotalSpentByCategory
